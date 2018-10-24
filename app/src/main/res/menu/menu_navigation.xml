@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <group
+        android:id="@+id/non_check"
+        android:checkableBehavior="none">
+        <item
+            android:id="@+id/nav_switch"
+            android:title="@string/night_mode"
+            app:actionLayout="@layout/menu_switch" />
+
+        <item
+            android:id="@+id/nav_settings"
+            android:title="@string/settings" />
+
+        <item
+            android:id="@+id/nav_feedback"
+            android:title="@string/help_feedback" />
+
+        <item
+            android:id="@+id/nav_donate"
+            android:title="@string/donate" />
+    </group>
+</menu>

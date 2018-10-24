@@ -1,0 +1,102 @@
+/*
+ * Copyright (c) 2018. Tony Maina.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *       http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        applicationId "com.maina.ciaAgendi"
+        minSdkVersion 21
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    kapt {
+        arguments {
+            arg('room.schemaLocation', "$projectDir/schema")
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:${versions.kotlin}"
+
+    implementation "com.android.support:appcompat-v7:${versions.support_library}"
+    implementation "com.android.support:design:${versions.support_library}"
+    implementation "com.android.support:cardview-v7:${versions.support_library}"
+    implementation "com.android.support:recyclerview-v7:${versions.support_library}"
+    implementation "com.android.support.constraint:constraint-layout:${versions.const_layout}"
+
+    implementation "android.arch.lifecycle:extensions:${versions.arch_comp}"
+    implementation "android.arch.lifecycle:reactivestreams:${versions.arch_comp}"
+    kapt "android.arch.lifecycle:compiler:${versions.arch_comp}"
+    implementation "android.arch.persistence.room:rxjava2:${versions.arch_comp}"
+    kapt "android.arch.persistence.room:compiler:${versions.arch_comp}"
+
+    implementation "com.google.dagger:dagger-android:${versions.dagger}"
+    implementation "com.google.dagger:dagger-android-support:${versions.dagger}"
+    kapt "com.google.dagger:dagger-compiler:${versions.dagger}"
+    kapt "com.google.dagger:dagger-android-processor:${versions.dagger}"
+
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-core:${versions.coroutines}"
+    implementation "org.jetbrains.kotlinx:kotlinx-coroutines-android:${versions.coroutines}"
+
+    implementation "com.google.firebase:firebase-core:16.0.4"
+    implementation "com.google.firebase:firebase-firestore:17.1.1"
+    implementation "com.google.firebase:firebase-inappmessaging-display:17.0.2"
+
+    implementation "com.jakewharton.timber:timber:${versions.timber}"
+
+    implementation "com.android.billingclient:billing:${versions.billing}"
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+configurations.all {
+    resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+        def requested = details.requested
+        if (requested.group == 'com.android.support') {
+            if (!requested.name.startsWith("multidex")) {
+                details.useVersion versions.support_library
+            }
+        }
+    }
+}
+
+apply plugin: 'com.google.gms.google-services'
