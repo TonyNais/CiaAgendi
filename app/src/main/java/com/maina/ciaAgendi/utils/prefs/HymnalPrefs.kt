@@ -29,4 +29,8 @@ interface HymnalPrefs {
     fun isNightMode(): Boolean
 
     fun setNightMode(isNight: Boolean)
+
+    fun getHymnal(): String
+
+    fun setHymnal(hymnal: String)
 }

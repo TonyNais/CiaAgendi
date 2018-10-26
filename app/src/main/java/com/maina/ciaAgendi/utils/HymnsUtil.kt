@@ -32,7 +32,7 @@ object HymnsUtil {
     private val gson = Gson()
 
     fun getHymns(context: Context): List<Hymn> {
-        val jsonString = getJson(context.resources, R.raw.swahili)
+        val jsonString = getJson(context.resources, R.raw.sdah_new)
         val type = object : TypeToken<List<Hymn>>() {
 
         }.type
