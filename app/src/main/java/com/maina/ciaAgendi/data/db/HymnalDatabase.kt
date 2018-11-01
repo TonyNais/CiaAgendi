@@ -65,14 +65,33 @@ abstract class HymnalDatabase : RoomDatabase() {
                          * Load default hymns when database is created
                          */
                         launch {
-                            val database = getInstance(context)
+                            val sdah = getInstance(context)
+//                            val sdahOld = getInstance(context)
+                            val cisdb = getInstance(context)
+                            val kikdb = getInstance(context)
+                            val kikdbOld = getInstance(context)
+                            val nzkdb = getInstance(context)
 
-                            database.hymnalDao()
-                                    .insert(LocalHymnal.default)
+                            sdah.hymnalDao().insert(LocalHymnal.default)
+//                            sdahOld.hymnalDao().insert(LocalHymnal.sdahold)
+                            cisdb.hymnalDao().insert(LocalHymnal.christinsong)
+                            kikdb.hymnalDao().insert(LocalHymnal.kikuyu_new)
+                            kikdbOld.hymnalDao().insert(LocalHymnal.kikuyu_old)
+                            nzkdb.hymnalDao().insert(LocalHymnal.nyimbozakristo)
 
-                            val hymns = HymnsUtil.getHymns(context)
+                            val hymnsNew = HymnsUtil.getSDAHymnsNew(context)
+//                            val hymnsOld = HymnsUtil.getSDAHymnsOld(context)
+                            val CIShymns = HymnsUtil.getCISHymns(context)
+                            val kikhymnsNew = HymnsUtil.getKikuyuHymnsNew(context)
+                            val kikhymnsOld = HymnsUtil.getKikuyuHymnsOld(context)
+                            val nzkhymn = HymnsUtil.getNZKHymns(context)
 
-                            hymns.forEach { database.hymnsDao().insert(it) }
+                            hymnsNew.forEach { sdah.hymnsDao().insert(it) }
+//                            hymnsOld.forEach { sdahOld.hymnsDao().insert(it) }
+                            CIShymns.forEach { cisdb.hymnsDao().insert(it) }
+                            kikhymnsNew.forEach { kikdb.hymnsDao().insert(it) }
+                            kikhymnsOld.forEach { kikdbOld.hymnsDao().insert(it) }
+                            nzkhymn.forEach { nzkdb.hymnsDao().insert(it) }
                         }
                     }
                 })

@@ -34,7 +34,7 @@ class SplashViewModel @Inject constructor(database: HymnalDatabase) : ScopedView
 
         launch {
             val list = database.hymnalDao().listAll()
-            val hymns = database.hymnsDao().getHymns("eng")
+            val hymns = database.hymnsDao().getHymns("sdah")
 
             Timber.d("HYMNALS: ${list.size}")
             Timber.d("ENG-HYMNS: ${hymns.size}")

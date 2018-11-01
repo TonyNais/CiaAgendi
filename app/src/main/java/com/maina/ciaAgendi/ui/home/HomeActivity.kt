@@ -60,6 +60,8 @@ class HomeActivity : BaseThemedActivity(), HomeCallbacks {
             }
         })
         viewModel.number.observe(this, Observer { it?.let { number -> viewPager.currentItem = number - 1 } })
+
+//        hymnalSelected("kik old")
     }
 
     private fun initUi() {

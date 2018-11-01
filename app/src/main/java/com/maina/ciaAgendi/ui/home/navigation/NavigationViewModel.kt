@@ -67,7 +67,7 @@ class NavigationViewModel @Inject constructor(private val fireStore: FirebaseFir
                         val hymnal = data.toObject(Hymnal::class.java)
 
                         if (!result.contains(hymnal)) {
-                            if (hymnal.code == "eng") { //default hymnal
+                            if (hymnal.code == "sdah") { //default hymnal
                                 hymnal.available = true
                             }
                             result.add(hymnal)

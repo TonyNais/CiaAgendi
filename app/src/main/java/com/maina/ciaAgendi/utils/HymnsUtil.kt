@@ -31,7 +31,7 @@ object HymnsUtil {
 
     private val gson = Gson()
 
-    fun getHymns(context: Context): List<Hymn> {
+    fun getSDAHymnsNew(context: Context): List<Hymn> {
         val jsonString = getJson(context.resources, R.raw.sdah_new)
         val type = object : TypeToken<List<Hymn>>() {
 
@@ -40,12 +40,93 @@ object HymnsUtil {
         val hymns: List<Hymn> = gson.fromJson(jsonString, type)
         hymns.forEach {
             val number = hymns.indexOf(it) + 1
-            it.id = "eng_$number"
+            it.id = "sdah_$number"
             it.number = number
-            it.language = "eng"
+            it.language = "sdah"
         }
         return hymns
     }
+
+//    fun getSDAHymnsOld(context: Context): List<Hymn> {
+//        val jsonString = getJson(context.resources, R.raw.sdah_old)
+//        val type = object : TypeToken<List<Hymn>>() {
+//
+//        }.type
+//
+//        val hymns: List<Hymn> = gson.fromJson(jsonString, type)
+//        hymns.forEach {
+//            val number = hymns.indexOf(it) + 1
+//            it.id = "sdah_old_$number"
+//            it.number = number
+//            it.language = "sdah old"
+//        }
+//        return hymns
+//    }
+
+    fun getCISHymns(context: Context): List<Hymn> {
+        val jsonString = getJson(context.resources, R.raw.christ_in_song)
+        val type = object : TypeToken<List<Hymn>>() {
+
+        }.type
+
+        val hymns: List<Hymn> = gson.fromJson(jsonString, type)
+        hymns.forEach {
+            val number = hymns.indexOf(it) + 1
+            it.id = "cis_$number"
+            it.number = number
+            it.language = "cis"
+        }
+        return hymns
+    }
+
+    fun getNZKHymns(context: Context): List<Hymn> {
+        val jsonString = getJson(context.resources, R.raw.swahili)
+        val type = object : TypeToken<List<Hymn>>() {
+
+        }.type
+
+        val hymns: List<Hymn> = gson.fromJson(jsonString, type)
+        hymns.forEach {
+            val number = hymns.indexOf(it) + 1
+            it.id = "nzk_$number"
+            it.number = number
+            it.language = "nzk"
+        }
+        return hymns
+    }
+
+    fun getKikuyuHymnsOld(context: Context): List<Hymn> {
+        val jsonString = getJson(context.resources, R.raw.kikuyu_old)
+        val type = object : TypeToken<List<Hymn>>() {
+
+        }.type
+
+        val hymns: List<Hymn> = gson.fromJson(jsonString, type)
+        hymns.forEach {
+            val number = hymns.indexOf(it) + 1
+            it.id = "kik_old_$number"
+            it.number = number
+            it.language = "kik old"
+        }
+        return hymns
+    }
+
+    fun getKikuyuHymnsNew(context: Context): List<Hymn> {
+        val jsonString = getJson(context.resources, R.raw.kikuyu_new)
+        val type = object : TypeToken<List<Hymn>>() {
+
+        }.type
+
+        val hymns: List<Hymn> = gson.fromJson(jsonString, type)
+        hymns.forEach {
+            val number = hymns.indexOf(it) + 1
+            it.id = "kik_new_$number"
+            it.number = number
+            it.language = "kik new"
+        }
+        return hymns
+    }
+
 
     /**
      * Open a json file from raw and construct as class using Gson.

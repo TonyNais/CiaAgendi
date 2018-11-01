@@ -39,9 +39,9 @@ open class Hymnal(var name: String,
 
     override fun compareTo(other: Hymnal): Int {
         return when {
-            code == "eng" -> -1
+            code == "sdah" -> -1
             available -> -1
-            other.code == "eng" -> 1
+            other.code == "sdah" -> 1
             other.available -> 1
             else -> name.compareTo(other.name)
         }

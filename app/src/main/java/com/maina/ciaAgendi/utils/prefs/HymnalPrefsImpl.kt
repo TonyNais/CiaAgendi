@@ -24,7 +24,7 @@ class HymnalPrefsImpl constructor(val context: Context) : HymnalPrefs {
 
     private val prefs: SharedPreferences = PreferenceManager.getDefaultSharedPreferences(context)
 
-    override fun getLanguage(): String = prefs.getString(PREF_LANGUAGE, "eng") as String
+    override fun getLanguage(): String = prefs.getString(PREF_LANGUAGE, "sdah") as String
 
     override fun setLanguage(language: String) {
         prefs.edit()
@@ -48,19 +48,10 @@ class HymnalPrefsImpl constructor(val context: Context) : HymnalPrefs {
                 .apply()
     }
 
-    override fun getHymnal(): String = prefs.getString(PREF_SELECTED_HYMNAL, "kikuyu_new") as String
-
-    override fun setHymnal(hymnal: String) {
-        prefs.edit()
-                .putString(PREF_LANGUAGE, hymnal)
-                .apply()
-    }
-
     companion object {
         private const val PREF_LANGUAGE = "LANGUAGE"
         private const val PREF_LAST_NUMBER = "LAST_NUMBER"
         private const val PREF_NIGHT_MODE = "NIGHT_MODE"
-        private const val PREF_SELECTED_HYMNAL = "PREF_SELECTED_HYMNAL"
     }
 
 }
